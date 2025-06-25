@@ -15,6 +15,7 @@ class Logger:
                 if cls._instance is None:
                     cls._instance = super().__new__(cls)
                     cls._instance._initialize()
+        return cls._instance
     
     def _initialize(self):
         self._logger = logging.getLogger('logger')
