@@ -2,6 +2,8 @@ from threading import Lock
 import logging
 from pathlib import Path
 import os
+from logging.handlers import RotatingFileHandler
+from datetime import datetime
 
 class Logger:
     _instance = None
@@ -30,3 +32,15 @@ class Logger:
         self.stream_handler.setFormatter(self.formatter)
         self.stream_handler.setLevel(logging.DEBUG)
         self.handlers[self.stream_handler.name] = self.stream_handler
+
+        filename = Path(f'{datetime.now().strftime('%Y-%m-%d')}.log')
+        self.file_handler = RotatingFileHandler(
+            filename=self.log_file_path / filename,
+            maxBytes=25*1024*1024,
+            backupCount=7,
+            encoding='utf-8'
+        )
+        self.file_handler.set_name('file_handler')
+        self.file_handler.setFormatter(self.formatter)
+        self.file_handler.setLevel(logging.INFO)
+        self.handlers[self.file_handler.name] = self.file_handler
