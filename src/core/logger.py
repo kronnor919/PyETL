@@ -59,3 +59,6 @@ class Logger:
     def addHandlers(self, hdlrs: List[logging.Handler]):
         for hdlr in hdlrs:
             self.addHandler(hdlr)
+
+    def getHandler(self, name: str):
+        return self.handlers[name]
