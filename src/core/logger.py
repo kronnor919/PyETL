@@ -24,3 +24,9 @@ class Logger:
             fmt='%(levelname)s - %(asctime)s - %(message)s',
             datefmt='%Y-%m-%d %H:%M:S'
         )
+
+        self.stream_handler = logging.StreamHandler()
+        self.stream_handler.set_name('stream_handler')
+        self.stream_handler.setFormatter(self.formatter)
+        self.stream_handler.setLevel(logging.DEBUG)
+        self.handlers[self.stream_handler.name] = self.stream_handler
