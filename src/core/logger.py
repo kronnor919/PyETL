@@ -4,6 +4,7 @@ from pathlib import Path
 import os
 from logging.handlers import RotatingFileHandler
 from datetime import datetime
+from typing import List
 
 class Logger:
     _instance = None
@@ -54,3 +55,7 @@ class Logger:
     def addHandler(self, hdlr: logging.Handler):
         self.handlers[hdlr] = hdlr
         self.updateLoggerHandlers()
+
+    def addHandlers(self, hdlrs: List[logging.Handler]):
+        for hdlr in hdlrs:
+            self.addHandler(hdlr)
