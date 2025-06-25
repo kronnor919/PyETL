@@ -1,5 +1,7 @@
 from threading import Lock
 import logging
+from pathlib import Path
+import os
 
 class Logger:
     _instance = None
@@ -15,6 +17,8 @@ class Logger:
     def _initialize(self):
         self._logger = logging.getLogger('logger')
         self.handlers = {}
+        self.log_file_path = Path(os.path.join('src' ,'logs')).resolve()
+        self.log_file_path.mkdir(exist_ok=True)
 
         self.formatter = logging.Formatter(
             fmt='%(levelname)s - %(asctime)s - %(message)s',
