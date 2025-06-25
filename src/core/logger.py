@@ -50,3 +50,7 @@ class Logger:
 
     def updateLoggerHandlers(self):
         [self._logger.addHandler(hdlr) for hdlr in self.handlers.values() if hdlr not in self._logger.handlers]
+
+    def addHandler(self, hdlr: logging.Handler):
+        self.handlers[hdlr] = hdlr
+        self.updateLoggerHandlers()
