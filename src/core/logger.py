@@ -1,4 +1,5 @@
 from threading import Lock
+import logging
 
 class Logger:
     _instance = None
@@ -12,4 +13,10 @@ class Logger:
                     cls._instance._initialize()
     
     def _initialize(self):
-        pass
+        self._logger = logging.getLogger('logger')
+        self.handlers = {}
+
+        self.formatter = logging.Formatter(
+            fmt='%(levelname)s - %(asctime)s - %(message)s',
+            datefmt='%Y-%m-%d %H:%M:S'
+        )
