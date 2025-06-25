@@ -65,5 +65,6 @@ class Logger:
 
     def removeHandler(self, name: str):
         handler = self.getHandler(name)
-        del self.handlers[name]
-        self._logger.removeHandler(handler)
+        if handler:
+            del self.handlers[name]
+            self._logger.removeHandler(handler)
