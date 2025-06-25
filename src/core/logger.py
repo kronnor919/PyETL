@@ -68,3 +68,11 @@ class Logger:
         if handler:
             del self.handlers[name]
             self._logger.removeHandler(handler)
+    
+    def modifyHandler(self, name: str, modify_func):
+        handler = self.getHandler(name)
+        if handler:
+            new_handler = modify_func(name)
+            
+            del self.handlers[name]
+            self.handlers[new_handler.name] = new_handler
