@@ -44,3 +44,8 @@ class Logger:
         self.file_handler.setFormatter(self.formatter)
         self.file_handler.setLevel(logging.INFO)
         self.handlers[self.file_handler.name] = self.file_handler
+
+        self.updateLoggerHandlers()
+
+    def updateLoggerHandlers(self):
+        [self._logger.addHandler(hdlr) for hdlr in self.handlers.values() if hdlr not in self._logger.handlers]
